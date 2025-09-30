@@ -32,10 +32,10 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import SvgWidgetPlugin from './plugins/svgwidgetplugin';
 import SvgConverterAdapterPlugin from './plugins/svgconverteradapterplugin';
 
-export default class ClassicEditor extends ClassicEditorBase {}
+export default class CustomEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
-ClassicEditor.builtinPlugins = [
+CustomEditor.builtinPlugins = [
 	Essentials,
 //	UploadAdapter,
 	Autoformat,
@@ -64,7 +64,7 @@ ClassicEditor.builtinPlugins = [
 ];
 
 // Editor configuration.
-ClassicEditor.defaultConfig = {
+CustomEditor.defaultConfig = {
 	toolbar: {
 		items: [
 			'heading',
