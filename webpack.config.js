@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const { styles } = require('@ckeditor/ckeditor5-dev-utils');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src', 'ckeditor.js'),
@@ -9,10 +8,11 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'ckeditor.js',
     library: 'ClassicEditor',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    clean: true
   },
   performance: {
-  	hints: false
+    hints: false
   },
   resolve: {
     extensions: ['.js', '.ts']
@@ -26,12 +26,13 @@ module.exports = {
       },
       // CKEditor 5 theme CSS
       {
-        test: /\.css$/,
+        test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
         use: [
           {
             loader: 'style-loader',
             options: {
-              injectType: 'singletonStyleTag'
+              injectType: 'singletonStyleTag',
+              attributes: { 'data-cke': true }
             }
           },
           'css-loader',
@@ -40,13 +41,23 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
-                  require('postcss-preset-env')({ stage: 1 })
+                  require('postcss-import'),
+                  require('postcss-mixins'),
+                  require('postcss-nesting'),
+                  require('postcss-custom-properties'),
+                  require('postcss-color-function'),
+                  require('postcss-discard-comments'),
+                  require('postcss-preset-env')({
+                    stage: 0,
+                    features: {
+                      'is-pseudo-class': false   // 👈 disable :is() transform
+                    }
+                  })
                 ]
               }
             }
           }
-        ],
-        include: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css/
+        ]
       }
     ]
   },
