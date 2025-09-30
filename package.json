@@ -26,6 +26,8 @@
   ],
   "devDependencies": {
     "@ckeditor/ckeditor5-basic-styles": "^43.0.0",
+    "@ckeditor/ckeditor5-ckfinder": "^43.0.0",
+    "@ckeditor/ckeditor5-cloud-services": "^43.0.0",
     "@ckeditor/ckeditor5-core": "^43.0.0",
     "@ckeditor/ckeditor5-dev-utils": "^29.0.0",
     "@ckeditor/ckeditor5-editor-classic": "^43.0.0",
