@@ -11,6 +11,9 @@ module.exports = {
     library: 'ClassicEditor',
     libraryTarget: 'umd'
   },
+  performance: {
+  	hints: false
+  },
   resolve: {
     extensions: ['.js', '.ts']
   },
